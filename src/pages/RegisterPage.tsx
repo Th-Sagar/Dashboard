@@ -32,7 +32,6 @@ const RegisterPage = () => {
     const name = nameRef.current?.value;
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    console.log("data", { name, email, password });
     if (!name || !email || !password) return alert("Please fill in all fields");
     mutation.mutate({ name, email, password });
   };

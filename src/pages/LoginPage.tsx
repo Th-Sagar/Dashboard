@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { login } from "@/http/api";
+import useTokenStore from "@/store";
 import { Label } from "@radix-ui/react-label";
 import { useMutation } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
@@ -17,13 +18,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const setToken = useTokenStore((state) => state.setToken);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const mutation = useMutation({
     mutationFn: login,
-    onSuccess: () => {
-      console.log("login successful");
+    onSuccess: (response) => {
+      setToken(response.data.accessToken);
       navigate("/dashboard/home");
     },
   });
@@ -31,7 +34,6 @@ const LoginPage = () => {
   const handleLoginSubmit = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    console.log("data", { email, password });
     if (!email || !password) return alert("Please fill in all fields");
     mutation.mutate({ email, password });
   };
