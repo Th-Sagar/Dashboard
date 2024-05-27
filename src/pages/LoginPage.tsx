@@ -12,9 +12,10 @@ import { login } from "@/http/api";
 import { Label } from "@radix-ui/react-label";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -22,6 +23,7 @@ const LoginPage = () => {
     mutationFn: login,
     onSuccess: () => {
       console.log("login successful");
+      navigate("/dashboard/home");
     },
   });
 
