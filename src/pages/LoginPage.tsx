@@ -59,7 +59,11 @@ const LoginPage = () => {
             <Label htmlFor="password">Password</Label>
             <Input ref={passwordRef} id="password" type="password" required />
           </div>
+          {mutation.isError && (
+            <span className="text-red-500">{mutation.error.message}</span>
+          )}
         </CardContent>
+
         <CardFooter>
           <div className=" w-full ">
             <Button
