@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { login } from "@/http/api";
 import { Label } from "@radix-ui/react-label";
 import { QueryClient, useMutation } from "@tanstack/react-query";
+import { LoaderCircle } from "lucide-react";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -60,9 +61,15 @@ const LoginPage = () => {
           </div>
         </CardContent>
         <CardFooter>
-          <div className=" w-full">
-            <Button onClick={handleLoginSubmit} className="w-full">
-              Sign in
+          <div className=" w-full ">
+            <Button
+              onClick={handleLoginSubmit}
+              className="w-full "
+              disabled={mutation.isPending}
+            >
+              {mutation.isPending && <LoaderCircle className=" animate-spin" />}
+
+              {!mutation.isPending && <span className="ml-2">Sign in</span>}
             </Button>
             <div className="mt-4 text-center text-sm">
               Don't have an account?{" "}
