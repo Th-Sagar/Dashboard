@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { login } from "@/http/api";
 import { Label } from "@radix-ui/react-label";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
