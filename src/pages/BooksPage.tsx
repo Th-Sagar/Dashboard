@@ -40,8 +40,8 @@ const BooksPage = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["books"],
     queryFn: getBooks,
+    staleTime: 1000 * 60 * 2, // in milliseconds
   });
-  console.log("data", data);
 
   return (
     <div>
