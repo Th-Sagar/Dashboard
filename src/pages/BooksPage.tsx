@@ -38,7 +38,7 @@ import { LoaderCircle, MoreHorizontal, PlusCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BooksPage = () => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["books"],
     queryFn: getBooks,
     staleTime: 1000 * 60 * 2, // in milliseconds
